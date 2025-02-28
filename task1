@@ -1,0 +1,13 @@
+function hasTwoCubeSums(n) {
+    let foundPairs = [];
+    
+    for (let a = 1; a <= Math.cbrt(n / 2); a++) {
+        for (let b = a + 1; b <= Math.cbrt(n - a * a * a); b++) {
+            if (a * a * a + b * b * b === n) {
+                foundPairs.push([a, b]);
+            }
+        }
+    }
+    
+    return foundPairs.length >= 2;
+}
