@@ -1,0 +1,11 @@
+function ipv4Parser(ip, mask) {
+  const parseOctets = (str) => str.split('.').map(Number);
+  const ipOctets = parseOctets(ip);
+  const maskOctets = parseOctets(mask);
+  const networkBlockOctets = ipOctets.map((octet, index) => octet & maskOctets[index]);
+  const hostIdentifierOctets = ipOctets.map((octet, index) => octet - networkBlockOctets[index]);
+  const networkBlock = networkBlockOctets.join('.');
+  const hostIdentifier = hostIdentifierOctets.join('.');
+
+  return [networkBlock, hostIdentifier];
+}
